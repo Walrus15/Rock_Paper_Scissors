@@ -18,7 +18,7 @@ class Enemy():
         self.lives -= 1
         if self.lives == 0:
             player_obj.scores += 5
-            return EnemyDown()
+            raise EnemyDown()
 
 class Player():
     def __init__(self, name):
@@ -41,7 +41,7 @@ class Player():
         if self.lives == 0:
             GameOver.saveScore(self.score)
             print('\nYour score = ' + int(self.score) + '\n')
-            return self.GameOver()
+            raise self.GameOver()
 
     def attack(self, enemy_obj):
         print('\n\nEnemy HP = ' + str(enemy_obj.lives))

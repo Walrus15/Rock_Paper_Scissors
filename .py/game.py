@@ -53,11 +53,9 @@ if __name__ == "__main__":
                 finally:
                     print('Good bye!')
             if menu == 'scores':
-                with open('scores.txt', 'r') as file:
-                    line = file.readline()
-                    while line:
-                        print(line, end='\n')
-                        line = file.readline()
+                with open('scores.txt', 'a+') as file:
+                    line = file.read()
+                    print(line)
 
             if menu == 'help':
                 pass
