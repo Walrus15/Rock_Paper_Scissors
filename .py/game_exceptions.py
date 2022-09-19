@@ -2,13 +2,14 @@
 
 
 class GameOver(Exception):
-    def __init__(self, scores):
-        self.scores = scores
+    def __init__(self):
+        pass
 
-
-    def saveScore(self):
+    @staticmethod
+    def saveScore(player_obj):
         with open('scores.txt', 'a+') as fp:
-            fp.write(self.scores + '\n')
+            fp.write(player_obj.name + ' |' + player_obj.scores + '| ' + '\n')
 
 class EnemyDown(Exception):
-    pass
+    def __init__(self):
+        pass

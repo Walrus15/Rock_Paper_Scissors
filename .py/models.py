@@ -14,9 +14,10 @@ class Enemy():
     def select_attack():
         return randint(1, 3)
 
-    def decrease_lives(self):
+    def decrease_lives(self, player_obj):
         self.lives -= 1
         if self.lives == 0:
+            player_obj.scores += 5
             return EnemyDown()
 
 class Player():
@@ -28,23 +29,25 @@ class Player():
 
     @staticmethod
     def fight(attack, defense):
-        if attack == defense:
-            return 0
         if attack < defense:
-            return -1
-        if attack > defense:
             return 1
+        elif attack > defense or attack == 3 and defense == 1:
+            return -1
+        elif attack == defense:
+            return 0
 
     def decrease_lives(self):
         self.lives -= 1
         if self.lives == 0:
+            GameOver.saveScore(self.score)
+            print('\nYour score = ' + int(self.score) + '\n')
             return self.GameOver()
 
     def attack(self, enemy_obj):
         print('\n\nEnemy HP = ' + str(enemy_obj.lives))
         print('Your HP = ' + str(self.lives) + '\n')
         print(self.name + ' attack!')
-        player = int(input('Enter 1-3: '))
+        player = int(input('Enter |1|-Sorcerer. |2|-Warrior. |3|-Robber: '))
         botNum = enemy_obj.select_attack()
 
         print('Your turn: ' + str(player))
@@ -56,7 +59,7 @@ class Player():
         elif res == 1:
             print("\nYou attacked successfully!\n")
             self.score += 1
-            enemy_obj.decrease_lives()
+            enemy_obj.decrease_lives(self)
         else:
             print("\nYou missed!\n")
 
