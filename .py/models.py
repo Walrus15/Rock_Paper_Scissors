@@ -67,7 +67,7 @@ class Player():
         print('\n\nEnemy HP = ' + str(enemy_obj.lives))
         print('Your HP = ' + str(self.lives) + '\n')
         print(self.name + ', defend yourself!')
-        player = int(input('Enter 1-3: '))
+        player = int(input('Enter |1|-Sorcerer. |2|-Warrior. |3|-Robber: '))
         botNum = enemy_obj.select_attack()
 
         print('Your turn: ' + str(player))
@@ -77,7 +77,7 @@ class Player():
         if res == 0:
             print("It's a draw!")
         elif res == 1:
-            print("You attacked successfully!")
+            print("Enemy attacked successfully!")
             self.decrease_lives()
         else:
-            print("You missed!")
+            print("Enemy missed!")
