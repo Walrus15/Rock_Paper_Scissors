@@ -1,0 +1,9 @@
+venv\
+
+requiremqnts.txt
+
+scores.txt
+
+.idea\
+
+__pycache__\
